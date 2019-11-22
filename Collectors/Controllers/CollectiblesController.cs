@@ -25,7 +25,11 @@ namespace Collectors.Controllers
         // GET: Collectibles
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Collectibles.Include(c => c.Collection);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var applicationDbContext = _context.Collections
+                                               .Include(c => c.User)
+                                               .Where(c => c.UserId == user.Id);
+
             return View(await applicationDbContext.ToListAsync());
         }
 
