@@ -121,7 +121,7 @@ namespace Collectors.Controllers
                     if (!CollectibleExists(collectible.Id))
                     {
                         return NotFound();
-                    }
+                     }
                     else
                     {
                         throw;

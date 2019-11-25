@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Collectors.Models
 {
@@ -13,8 +14,12 @@ namespace Collectors.Models
         [MaxLength(4000)]
         public string Description { get; set; }
 
-        [Required]
         public DateTime CollectedDate { get; set; }
+
+        public Collectible()
+        {
+            this.CollectedDate = DateTime.UtcNow;
+        }
 
         public int CollectionId { get; set; }
         public Collection Collection { get; set; }
